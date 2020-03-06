@@ -6,7 +6,7 @@ import { createStructuredSelector } from "reselect";
 import { auth } from "../../firebase/firebase.utils";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "./../cart-icon/cart-icon.component";
-import Cart from "./../cart-dropdown/cart-dropdown.component";
+import CartDropdown from "./../cart-dropdown/cart-dropdown.component";
 import { selectCartHidden } from "./../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "./../../redux/user/user.selectors";
 
@@ -35,7 +35,7 @@ const Header = ({ currentUser, hidden }) => (
 			)}
 			<CartIcon />
 		</div>
-		{hidden ? null : <Cart />}
+		{hidden ? null : <CartDropdown />}
 	</div>
 );
 
