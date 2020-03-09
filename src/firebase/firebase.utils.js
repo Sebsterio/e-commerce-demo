@@ -13,6 +13,8 @@ const config = {
 	measurementId: "G-TVV199P3V1"
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
 	if (!userAuth) return;
 	const userRef = firestore.doc(`users/${userAuth.uid}`);
@@ -35,7 +37,37 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 	return userRef;
 };
 
-firebase.initializeApp(config);
+export const addCollectionAndDocuments = async (
+	collectionKey,
+	objectsToAdd
+) => {
+	const collectionRef = firestore.collection(collectionKey);
+
+	const batch = firestore.batch();
+	objectsToAdd.forEach(obj => {
+		const newDocRef = collectionRef.doc(); // .doc(_id); empty id -> UID
+		batch.set(newDocRef, obj);
+	});
+
+	return await batch.commit();
+};
+
+export const convertCollectionSnapshotToMap = collections => {
+	const transformedCollection = collections.docs.map(doc => {
+		const { title, items } = doc.data();
+		return {
+			id: doc.id,
+			title,
+			routeName: encodeURI(title.toLowerCase()), // JS method
+			items
+		};
+	});
+
+	return transformedCollection.reduce((acc, col) => {
+		acc[col.title.toLowerCase()] = col;
+		return acc;
+	}, {});
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
