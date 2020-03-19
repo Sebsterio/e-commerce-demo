@@ -20,12 +20,15 @@ import {
 // -------------------------- handlers ----------------------------
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
+	// if new user, add him to DB with empty cart
 	const userRef = yield call(
 		createUserProfileDocument,
 		userAuth,
 		additionalData
 	);
+	// retrieve user from DB
 	const userSnapshot = yield userRef.get();
+	// save user in local state
 	yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
 }
 

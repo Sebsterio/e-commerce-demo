@@ -22,3 +22,12 @@ export const clearItemFromCart = item => ({
 export const clearCart = () => ({
 	type: cartActionTypes.CLEAR_CART
 });
+
+// export const updateExternalCart = () => ({
+// 	type: cartActionTypes.UPDATE_EXTERNAL_CART
+// });
+
+export const setCart = cartItems => ({
+	type: cartActionTypes.SET_CART,
+	payload: cartItems
+});

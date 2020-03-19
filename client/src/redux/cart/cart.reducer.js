@@ -3,15 +3,7 @@ import { addItemToCart, removeItemFromCart } from "./cart.utils";
 
 const INITIAL_STATE = {
 	hidden: true,
-	cartItems: [
-		{
-			id: 1,
-			name: "Brown Brim",
-			imageUrl: "https://i.ibb.co/ZYW3VTp/brown-brim.png",
-			price: 25,
-			quantity: 2
-		}
-	]
+	cartItems: []
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -44,6 +36,12 @@ const cartReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				cartItems: []
+			};
+
+		case cartActionTypes.SET_CART:
+			return {
+				...state,
+				cartItems: action.payload
 			};
 
 		default:
