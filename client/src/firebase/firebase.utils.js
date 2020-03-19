@@ -17,6 +17,8 @@ firebase.initializeApp(config);
 
 /************************************ DB ************************************/
 
+export const firestore = firebase.firestore();
+
 export const addCollectionAndDocuments = async (
 	collectionKey,
 	objectsToAdd
@@ -67,7 +69,6 @@ export const getUserCartRef = async userId => {
 /************************************ Auth ************************************/
 
 export const auth = firebase.auth();
-export const firestore = firebase.firestore();
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
 	if (!userAuth) return;
