@@ -16,11 +16,9 @@ import "./App.css";
 // lazy imports
 const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
 const ShopPage = lazy(() => import("./pages/shop/shop.component"));
-const CheckoutPage = lazy(() =>
-	import("./pages/sign-in-and-sign-up/sign-in-and-sign-up.component")
-);
+const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
 const SignInAndSignUpPage = lazy(() =>
-	import("./pages/checkout/checkout.component")
+	import("./pages/sign-in-and-sign-up/sign-in-and-sign-up.component")
 );
 
 // Component
